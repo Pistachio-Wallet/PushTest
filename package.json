@@ -4,18 +4,59 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "postinstall": "npx patch-package && npx rn-nodeify --install crypto,assert,url,stream,events,http,https,os,url,net,fs --hack"
   },
   "dependencies": {
+    "@ethersproject/shims": "^5.7.0",
+    "@pushprotocol/react-native-sdk": "^1.1.1",
+    "@pushprotocol/restapi": "^1.7.20",
+    "@pushprotocol/socket": "^0.5.3",
+    "buffer": "^6.0.3",
+    "ethers": "^6.12.1",
+    "events": "^1.1.1",
     "expo": "~51.0.9",
     "expo-status-bar": "~1.12.1",
+    "patch-package": "^8.0.0",
     "react": "18.2.0",
-    "react-native": "0.74.1"
+    "react-native": "0.74.1",
+    "react-native-fs": "^2.20.0",
+    "react-native-get-random-values": "^1.11.0",
+    "readable-stream": "^1.0.33",
+    "text-encoding": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
-  "private": true
+  "private": true,
+  "react-native": {
+    "crypto": "react-native-crypto",
+    "net": "react-native-tcp",
+    "http": "@tradle/react-native-http",
+    "https": "https-browserify",
+    "os": "react-native-os",
+    "fs": "react-native-level-fs",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify"
+  },
+  "browser": {
+    "crypto": "react-native-crypto",
+    "net": "react-native-tcp",
+    "http": "@tradle/react-native-http",
+    "https": "https-browserify",
+    "os": "react-native-os",
+    "fs": "react-native-level-fs",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "stream": "stream-browserify"
+  }
 }
