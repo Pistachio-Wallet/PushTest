@@ -13,8 +13,8 @@ Make sure you have the following installed:
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/Pistachio-Wallet/PushTest
+    cd PushTest
     ```
 
 2. **Install dependencies**
