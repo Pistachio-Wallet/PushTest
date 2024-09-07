@@ -39,6 +39,25 @@ export const Chat = () => {
 
 export const ChatContext = createContext({})
 
+const getPK = () => {
+  const pk =
+    process.env.EXPO_PUBLIC_PK ??
+    'ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
+
+  if (!pk) {
+    throw new Error('The environment variable is not defined')
+  }
+
+  if (
+    (pk.length !== 64 && pk.length !== 66) ||
+    (pk.length === 66 && !pk.startsWith('0x'))
+  ) {
+    throw new Error('The private key does not have the expected format')
+  }
+
+  return pk.startsWith('0x') ? pk : `0x${pk}`
+}
+
 export const ChatContextProvider = ({ children }) => {
   const [wallet, setWallet] = useState()
   const [pushUser, setPushUser] = useState()
@@ -46,7 +65,7 @@ export const ChatContextProvider = ({ children }) => {
 
   const createWallet = () => {
     try {
-      const signer = new ethers.Wallet(`0x${process.env.EXPO_PUBLIC_PK}`)
+      const signer = new ethers.Wallet(getPK())
 
       const address = signer.address
       const account = `eip155:${address}`
